@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CARBON Y GRAFITO INDUSTRIAL S.A.C.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,400;1,500&family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="view-inicio" class="site-view is-active">
+
+<div class="home" id="inicio">
+  <div class="home__visual">
+    <div class="home__arc"></div>
+    <div class="home__glow"></div>
+    <div class="home__slides" id="heroSlides">
+      <article class="home__slide is-active">
+        <img src="assets/hero-graphite.png" alt="Bloques, anillos y granulado de grafito industrial">
+      </article>
+      <article class="home__slide">
+        <img src="assets/hero-brushes.png" alt="Escobillas de carbón y anillos rozantes">
+      </article>
+      <article class="home__slide">
+        <img src="assets/hero-seals.png" alt="Sellos y piezas especiales de grafito">
+      </article>
+    </div>
+    <p class="home__note home__note--top">GRAFITO<br>CARBONO<br>SOLUCIONES<br>RESULTADOS</p>
+    <p class="home__note home__note--bottom">MÁS INDUSTRIA<br>UN MEJOR FUTURO</p>
+  </div>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="#inicio" class="logo" data-view="inicio">
+        <img src="assets/logo.png" alt="Carbon y Grafito Industrial S.A.C.">
+      </a>
+
+      <nav class="nav" id="mainNav">
+        <ul class="nav__list">
+          <li><a href="#inicio" class="nav__link nav__link--active" data-view="inicio">Inicio</a></li>
+          <li><a href="#nosotros" class="nav__link" data-view="nosotros">Nosotros</a></li>
+          <li class="nav__dropdown">
+            <a href="#productos" class="nav__link nav__link--dropdown" data-view="inicio">Productos</a>
+            <ul class="nav__submenu">
+              <li><a href="#productos" data-category="escobillas">Escobillas de carbón</a></li>
+              <li><a href="#productos" data-category="sellos">Sellos y bocinas</a></li>
+              <li><a href="#productos" data-category="anillos">Anillos rozantes</a></li>
+              <li><a href="#productos" data-category="portaescobillas">Porta escobillas</a></li>
+              <li><a href="#productos" data-category="especiales">Productos especiales</a></li>
+            </ul>
+          </li>
+          <li><a href="#aplicaciones" class="nav__link" data-view="inicio">Aplicaciones</a></li>
+          <li><a href="#contacto" class="nav__link" data-view="inicio">Contáctanos</a></li>
+        </ul>
+      </nav>
+
+      <button class="btn btn--ghost" id="btnCotizacionHeader" type="button">
+        Solicitar cotización
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+
+      <button class="header__toggle" id="menuToggle" aria-label="Abrir menú" type="button">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <p class="hero__side">CALIDAD · CONFIANZA · INDUSTRIA</p>
+
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <p class="hero__kicker">MATERIALES<br>QUE IMPULSAN GRANDES IDEAS</p>
+        <h1 class="hero__title">
+          <span class="hero__title-line">CARBONO</span>
+          <span class="hero__title-line">EN MOVIMIENTO,</span>
+          <span class="hero__title-line hero__title-line--accent">INDUSTRIA</span>
+          <span class="hero__title-line hero__title-line--secondary">EN EVOLUCIÓN</span>
+        </h1>
+        <p class="hero__lead">
+          Distribución de carbono, grafito y soluciones industriales.<br>
+          <span class="hero__lead-accent">para un mundo que no se detiene.</span>
+        </p>
+        <div class="hero__actions">
+          <a href="#productos" class="btn btn--primary" id="btnVerProductos">
+            Ver productos
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#nosotros" class="btn btn--text" id="btnConoceMas" data-view="nosotros">Conoce más</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__controls">
+      <span class="hero__counter"><strong id="slideCurrent">01</strong> / 03</span>
+      <div class="hero__arrows">
+        <button class="icon-btn" id="slidePrev" type="button" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button class="icon-btn" id="slideNext" type="button" aria-label="Siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="trust__items">
+      <article class="trust__item">
+        <span class="trust__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.2a1.7 1.7 0 00-1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.2a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.2a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9c.3.6.9 1 1.5 1H21a2 2 0 110 4h-.2a1.7 1.7 0 00-1.5 1z"/></svg>
+        </span>
+        Amplia variedad<br>de productos
+      </article>
+      <article class="trust__item">
+        <span class="trust__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v6c0 5-3.4 8.4-7 9-3.6-.6-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        </span>
+        Calidad<br>garantizada
+      </article>
+      <article class="trust__item">
+        <span class="trust__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="1" y="8" width="15" height="10" rx="2"/><path d="M16 11h3l4 3v4h-7"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
+        </span>
+        Atención a<br>nivel nacional
+      </article>
+      <article class="trust__item">
+        <span class="trust__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </span>
+        Asesoría<br>técnica especializada
+      </article>
+    </div>
+    <aside class="trust__panel">
+      <span>MATERIALES<br>QUE CONSTRUYEN<br>INDUSTRIA</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </aside>
+  </section>
+</div>
+
+  <section class="home-stats" id="homeStats" aria-label="Indicadores de la empresa">
+    <article class="home-stats__item">
+      <strong class="home-stats__value" data-count="15">0</strong>
+      <span class="home-stats__label">Años de experiencia</span>
+    </article>
+    <article class="home-stats__item">
+      <strong class="home-stats__value" data-count="1852">0</strong>
+      <span class="home-stats__label">Pedidos atendidos</span>
+    </article>
+    <article class="home-stats__item">
+      <strong class="home-stats__value" data-count="128">0</strong>
+      <span class="home-stats__label">Clientes en todo el Perú</span>
+    </article>
+  </section>
+
+  <section class="essence" id="esencia">
+    <div class="essence__copy">
+      <p class="eyebrow eyebrow--essence">Nuestra esencia</p>
+      <h2>
+        <span class="essence__title-line">Experiencia</span>
+        <span class="essence__title-line">que impulsa</span>
+        <span class="essence__title-accent">la industria</span>
+      </h2>
+      <p class="essence__lead">Carbono, grafito y soluciones industriales desarrolladas para responder a las exigencias de cada proyecto.</p>
+      <ul class="essence__list">
+        <li>
+          <span class="essence__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73L13 2.27a2 2 0 00-2 0L4 6.27A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+          </span>
+          <div>
+            <strong>Amplio stock</strong>
+            <span>Más de 500 ítems disponibles.</span>
+          </div>
+        </li>
+        <li>
+          <span class="essence__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="7" width="15" height="10" rx="2"/><path d="M16 10h3l4 3v4h-7"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+          </span>
+          <div>
+            <strong>Atención nacional</strong>
+            <span>Soluciones para clientes en todo el Perú.</span>
+          </div>
+        </li>
+        <li>
+          <span class="essence__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </span>
+          <div>
+            <strong>Asesoría especializada</strong>
+            <span>Acompañamiento técnico para cada necesidad.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="essence__visual">
+      <img src="assets/essence-products.png" alt="Bloques, anillos y piezas de grafito industrial">
+    </div>
+  </section>
+
+  <section class="talk" id="contacto">
+    <div class="talk__inner">
+      <div class="talk__main">
+        <p class="talk__eyebrow">Estamos para atenderte</p>
+        <h2 class="talk__title">Hable<span>mos</span></h2>
+        <p class="talk__lead">Cuéntanos qué necesitas. Podemos fabricar piezas de<br>carbón y grafito según muestra, plano o requerimiento.</p>
+        <button class="btn btn--primary btn--talk" id="btnSolicitarPieza" type="button">
+          Solicitar una pieza
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <ul class="talk__features">
+          <li>
+            <span class="talk__feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+            </span>
+            Según tu necesidad
+          </li>
+          <li>
+            <span class="talk__feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.2a1.7 1.7 0 00-1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.2a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.2a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9c.3.6.9 1 1.5 1H21a2 2 0 110 4h-.2a1.7 1.7 0 00-1.5 1z"/></svg>
+            </span>
+            Asesoría técnica
+          </li>
+          <li>
+            <span class="talk__feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 5-3.4 8.4-7 9-3.6-.6-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            </span>
+            Atención personalizada
+          </li>
+        </ul>
+      </div>
+      <div class="talk__channels">
+        <a class="talk__channel" href="https://wa.me/51914673502" target="_blank" rel="noopener">
+          <span class="talk__channel-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 2C6.48 2 2 6.48 2 12.04c0 1.77.46 3.5 1.34 5.02L2 22l5.07-1.33A10.02 10.02 0 0012.04 22C17.6 22 22 17.52 22 11.96 22 6.48 17.6 2 12.04 2zm0 18.15c-1.6 0-3.17-.43-4.54-1.24l-.33-.2-3.01.79.8-2.93-.21-.34A8.16 8.16 0 013.88 12c0-4.5 3.66-8.16 8.16-8.16 4.5 0 8.16 3.66 8.16 8.16 0 4.5-3.66 8.15-8.16 8.15z"/></svg>
+          </span>
+          <span><em>WhatsApp</em><b class="talk__value">+51 914 673 502</b></span>
+        </a>
+        <a class="talk__channel" href="tel:+5113310971">
+          <span class="talk__channel-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </span>
+          <span><em>Teléfono</em><b class="talk__value">(01) 331-0971</b></span>
+        </a>
+        <a class="talk__channel" href="mailto:ventas@carbonygrafitoind.com">
+          <span class="talk__channel-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+          </span>
+          <span><em>Correo</em><b class="talk__value">ventas@carbonygrafitoind.com</b></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="productos">
+    <div class="section-head">
+      <p class="eyebrow">Línea industrial</p>
+      <h2>Productos que mantienen<br>la industria en movimiento</h2>
+    </div>
+    <div class="products__grid">
+      <a class="product-card" href="#productos" data-category="escobillas" id="cardEscobillas">
+        <span class="product-card__num">01</span>
+        <img src="assets/product-escobillas.png" alt="Escobillas de carbón">
+        <div class="product-card__body">
+          <h3>Escobillas de carbón</h3>
+          <span>Ver línea</span>
+        </div>
+      </a>
+      <a class="product-card" href="#productos" data-category="sellos" id="cardSellos">
+        <span class="product-card__num">02</span>
+        <img src="assets/product-sellos.png" alt="Sellos y bocinas">
+        <div class="product-card__body">
+          <h3>Sellos y bocinas</h3>
+          <span>Ver línea</span>
+        </div>
+      </a>
+      <a class="product-card" href="#productos" data-category="anillos" id="cardAnillos">
+        <span class="product-card__num">03</span>
+        <img src="assets/product-anillos.png" alt="Anillos rozantes">
+        <div class="product-card__body">
+          <h3>Anillos rozantes</h3>
+          <span>Ver línea</span>
+        </div>
+      </a>
+      <a class="product-card" href="#productos" data-category="portaescobillas" id="cardPortaescobillas">
+        <span class="product-card__num">04</span>
+        <img src="assets/product-porta.png" alt="Porta escobillas">
+        <div class="product-card__body">
+          <h3>Porta escobillas</h3>
+          <span>Ver línea</span>
+        </div>
+      </a>
+      <a class="product-card" href="#productos" data-category="especiales" id="cardEspeciales">
+        <span class="product-card__num">05</span>
+        <img src="assets/product-especiales.png" alt="Productos especiales">
+        <div class="product-card__body">
+          <h3>Productos especiales</h3>
+          <span>Ver línea</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="apps" id="aplicaciones">
+    <div class="apps__copy">
+      <p class="eyebrow">Aplicaciones</p>
+      <h2>Soluciones para cada entorno industrial</h2>
+      <p>Escobillas, anillos, sellos y piezas especiales para motores, generadores, turbinas y maquinaria pesada en todo el Perú.</p>
+      <button class="btn btn--primary" id="btnCotizacionApps" type="button">Solicitar cotización</button>
+    </div>
+    <ul class="apps__list">
+      <li>Motores eléctricos industriales</li>
+      <li>Generadores y turbinas</li>
+      <li>Minería y cementeras</li>
+      <li>Plantas de energía</li>
+      <li>Transporte y ferrocarril</li>
+      <li>Maquinaria pesada</li>
+    </ul>
+  </section>
+
+</div>
+
+<div id="nosotros" class="site-view" hidden>
+
+  <header class="header header--page">
+    <div class="header__inner">
+      <a href="#inicio" class="logo" data-view="inicio">
+        <img src="assets/logo.png" alt="Carbon y Grafito Industrial S.A.C.">
+      </a>
+      <nav class="nav" id="mainNavNosotros">
+        <ul class="nav__list">
+          <li><a href="#inicio" class="nav__link" data-view="inicio">Inicio</a></li>
+          <li><a href="#nosotros" class="nav__link nav__link--active" data-view="nosotros">Nosotros</a></li>
+          <li class="nav__dropdown">
+            <a href="#productos" class="nav__link nav__link--dropdown" data-view="inicio">Productos</a>
+            <ul class="nav__submenu">
+              <li><a href="#productos" data-view="inicio" data-category="escobillas">Escobillas de carbón</a></li>
+              <li><a href="#productos" data-view="inicio" data-category="sellos">Sellos y bocinas</a></li>
+              <li><a href="#productos" data-view="inicio" data-category="anillos">Anillos rozantes</a></li>
+              <li><a href="#productos" data-view="inicio" data-category="portaescobillas">Porta escobillas</a></li>
+              <li><a href="#productos" data-view="inicio" data-category="especiales">Productos especiales</a></li>
+            </ul>
+          </li>
+          <li><a href="#aplicaciones" class="nav__link" data-view="inicio">Aplicaciones</a></li>
+          <li><a href="#contacto" class="nav__link" data-view="inicio">Contáctanos</a></li>
+        </ul>
+      </nav>
+      <button class="btn btn--ghost" type="button" data-open-modal="cotizacion">
+        Solicitar cotización
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <button class="header__toggle" aria-label="Abrir menú" type="button" data-nav-toggle>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="nosotros-main">
+    <section class="nosotros-hero">
+      <div class="nosotros-hero__panel">
+        <div class="nosotros-hero__main">
+          <p class="nosotros-hero__eyebrow">Quiénes somos</p>
+          <h1 class="nosotros-hero__title">
+            <span class="nosotros-hero__title-line">Más que materiales,</span>
+            <span class="nosotros-hero__title-line nosotros-hero__title-line--accent">soluciones reales</span>
+          </h1>
+          <p class="nosotros-hero__lead">
+            En Carbon y Grafito somos una empresa especializada en la distribución de carbono,
+            grafito y materiales industriales, comprometida con ofrecer soluciones confiables,
+            eficientes y de alta calidad para diversos sectores productivos.
+          </p>
+          <a href="#historia" class="btn btn--navy">Conoce nuestra historia
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <aside class="nosotros-hero__aside" aria-label="Valores de marca">
+          <div class="nosotros-hero__pillar-wrap">
+            <span class="nosotros-hero__vline" aria-hidden="true"></span>
+            <p class="nosotros-hero__pillars">
+              <span>Industria</span>
+              <span>Experiencia</span>
+              <span>Confianza</span>
+            </p>
+          </div>
+          <span class="nosotros-hero__hline" aria-hidden="true"></span>
+          <div class="nosotros-hero__mark">
+            <strong>C&amp;G</strong>
+            <span>Materiales que<br>impulsan el<br>progreso</span>
+          </div>
+        </aside>
+      </div>
+      <div class="nosotros-hero__visual">
+        <img src="assets/hero-graphite.png" alt="Componentes de carbono y grafito industrial">
+      </div>
+    </section>
+
+    <section class="nosotros-bar" aria-label="Ventajas">
+      <div class="nosotros-bar__inner">
+        <article class="nosotros-bar__item">
+          <span class="nosotros-bar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 7-7 11L5 10l7-7z"/></svg>
+          </span>
+          <div><h2>Calidad garantizada</h2><p>Trabajamos con materiales de alto rendimiento.</p></div>
+        </article>
+        <article class="nosotros-bar__item">
+          <span class="nosotros-bar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.2a1.7 1.7 0 00-1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.2a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.2a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9c.3.6.9 1 1.5 1H21a2 2 0 110 4h-.2a1.7 1.7 0 00-1.5 1z"/></svg>
+          </span>
+          <div><h2>Soluciones a medida</h2><p>Nos adaptamos a las necesidades de cada industria.</p></div>
+        </article>
+        <article class="nosotros-bar__item">
+          <span class="nosotros-bar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </span>
+          <div><h2>Atención especializada</h2><p>Asesoría técnica en todo momento.</p></div>
+        </article>
+        <article class="nosotros-bar__item">
+          <span class="nosotros-bar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="8" width="15" height="10" rx="2"/><path d="M16 11h3l4 3v4h-7"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
+          </span>
+          <div><h2>Cobertura nacional</h2><p>Llegamos donde la industria nos necesita.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="nosotros-mvv" id="historia">
+      <div class="nosotros-mvv__inner">
+        <article class="nosotros-mvv__col">
+          <p class="nosotros-mvv__label">Nuestra</p>
+          <h2 class="nosotros-mvv__heading">Misión</h2>
+          <p class="nosotros-mvv__text">Brindar soluciones en materiales industriales de carbono y grafito con altos estándares de calidad, contribuyendo al desarrollo y la eficiencia de nuestros clientes.</p>
+        </article>
+        <article class="nosotros-mvv__col">
+          <p class="nosotros-mvv__label">Nuestra</p>
+          <h2 class="nosotros-mvv__heading">Visión</h2>
+          <p class="nosotros-mvv__text">Ser la empresa líder en el suministro de materiales de carbono y grafito en el Perú y la región, reconocida por nuestra innovación, confiabilidad y compromiso con la industria.</p>
+        </article>
+        <article class="nosotros-mvv__col nosotros-mvv__col--values">
+          <p class="nosotros-mvv__label">Nuestros</p>
+          <h2 class="nosotros-mvv__heading">Valores</h2>
+          <div class="nosotros-mvv__values-row">
+            <ul class="nosotros-mvv__values">
+              <li><span class="nosotros-mvv__value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg></span>Compromiso</li>
+              <li><span class="nosotros-mvv__value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 5-3.4 8.4-7 9-3.6-.6-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>Integridad</li>
+              <li><span class="nosotros-mvv__value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>Orientación al cliente</li>
+              <li><span class="nosotros-mvv__value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg></span>Innovación</li>
+              <li><span class="nosotros-mvv__value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span>Trabajo en equipo</li>
+            </ul>
+            <figure class="nosotros-mvv__diagram" aria-hidden="true"><img src="assets/blueprint.svg" alt=""></figure>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="nosotros-impact" aria-label="Nuestro impacto">
+      <div class="nosotros-impact__inner">
+        <div class="nosotros-impact__left">
+          <div class="nosotros-impact__trust">
+            <p>Experiencia que genera<br>confianza</p>
+            <span class="nosotros-impact__rule nosotros-impact__rule--trust" aria-hidden="true"></span>
+          </div>
+          <p class="nosotros-impact__stack">
+            <span>Carbono</span><span>Grafito</span><span>Soluciones</span><span>Resultados</span>
+          </p>
+        </div>
+        <div class="nosotros-impact__right">
+          <div class="nosotros-impact__metrics">
+            <p class="nosotros-impact__kicker">Nuestro impacto</p>
+            <div class="nosotros-impact__stats">
+              <article class="nosotros-impact__stat"><strong class="nosotros-impact__value" data-count="10">+0</strong><span>Años de<br>experiencia</span></article>
+              <article class="nosotros-impact__stat"><strong class="nosotros-impact__value" data-count="500">+0</strong><span>Clientes<br>satisfechos</span></article>
+              <article class="nosotros-impact__stat"><strong class="nosotros-impact__value" data-count="1200">+0</strong><span>Productos<br>distribuidos</span></article>
+              <article class="nosotros-impact__stat"><strong class="nosotros-impact__value" data-count="15">+0</strong><span>Sectores<br>industriales</span></article>
+            </div>
+          </div>
+          <div class="nosotros-impact__quote-wrap">
+            <span class="nosotros-impact__rule nosotros-impact__rule--wide" aria-hidden="true"></span>
+            <blockquote class="nosotros-impact__quote">“Creemos en materiales que construyen un mejor futuro.”</blockquote>
+            <span class="nosotros-impact__rule nosotros-impact__rule--sign" aria-hidden="true"></span>
+            <p class="nosotros-impact__sign">Carbon y Grafito</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</div>
+
+  <footer class="site-footer">
+    <div class="site-footer__top">
+      <a href="#inicio" class="site-footer__brand">
+        <img src="assets/logo.png" alt="Carbon y Grafito Industrial S.A.C.">
+      </a>
+      <nav class="site-footer__nav" aria-label="Pie de página">
+        <a href="#inicio" data-view="inicio">Inicio</a>
+        <a href="#productos" data-view="inicio">Productos</a>
+        <a href="#aplicaciones" data-view="inicio">Soluciones</a>
+        <a href="#nosotros" data-view="nosotros">Nosotros</a>
+        <a href="#productos" data-view="inicio">Catálogo</a>
+        <a href="#contacto" data-view="inicio">Contacto</a>
+      </nav>
+      <div class="site-footer__social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.42a2.78 2.78 0 00-1.95 2 29.94 29.94 0 000 11.16 2.78 2.78 0 001.95 2C5.12 20 12 20 12 20s6.88 0 8.59-.42a2.78 2.78 0 001.95-2 29.94 29.94 0 000-11.16z"/><path d="M9.75 15.02l6.5-3.52-6.5-3.52v7.04z"/></svg></a>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>© 2026 Carbon y Grafito Industrial S.A.C. | Lima, Perú</p>
+      <p class="site-footer__tag">Calidad · Confianza · Industria</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="modalCotizacion">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+      <button class="modal__close" id="modalClose" type="button">&times;</button>
+      <h2>Solicitar cotización</h2>
+      <p>Cuéntenos su requerimiento y le respondemos a la brevedad.</p>
+      <form id="formCotizacion">
+        <input type="text" name="nombre" placeholder="Nombre completo" required>
+        <input type="email" name="email" placeholder="Correo electrónico" required>
+        <input type="tel" name="telefono" placeholder="Teléfono" required>
+        <textarea name="mensaje" rows="4" placeholder="Describa su requerimiento" required></textarea>
+        <button class="btn btn--primary" type="submit">Enviar solicitud</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <circle cx="200" cy="200" r="150" stroke="#00458f" stroke-width="1" fill="none"/>
+  <circle cx="200" cy="200" r="100" stroke="#00458f" stroke-width="0.8" fill="none" stroke-dasharray="4 4"/>
+  <circle cx="200" cy="200" r="50" stroke="#00458f" stroke-width="0.8" fill="none"/>
+  <line x1="200" y1="50" x2="200" y2="350" stroke="#00458f" stroke-width="0.6"/>
+  <line x1="50" y1="200" x2="350" y2="200" stroke="#00458f" stroke-width="0.6"/>
+  <rect x="120" y="120" width="160" height="160" stroke="#00458f" stroke-width="0.8" fill="none" transform="rotate(45 200 200)"/>
+  <path d="M160 160 L240 160 L240 240 L160 240 Z" stroke="#00458f" stroke-width="0.6" fill="none"/>
+  <path d="M180 100 L220 100 L230 130 L170 130 Z" stroke="#00458f" stroke-width="0.5" fill="none"/>
+  <path d="M180 270 L220 270 L230 300 L170 300 Z" stroke="#00458f" stroke-width="0.5" fill="none"/>
+  <text x="200" y="380" text-anchor="middle" font-size="10" fill="#00458f" font-family="monospace">MOTOR INDUSTRIAL</text>
+</svg>
