@@ -43,13 +43,13 @@
           <li><a href="#inicio" class="nav__link nav__link--active" data-view="inicio">Inicio</a></li>
           <li><a href="#nosotros" class="nav__link" data-view="nosotros">Nosotros</a></li>
           <li class="nav__dropdown">
-            <a href="#productos" class="nav__link nav__link--dropdown" data-view="inicio">Productos</a>
+            <a href="#productos" class="nav__link nav__link--dropdown" data-view="productos">Productos</a>
             <ul class="nav__submenu">
-              <li><a href="#productos" data-category="escobillas">Escobillas de carbón</a></li>
-              <li><a href="#productos" data-category="sellos">Sellos y bocinas</a></li>
-              <li><a href="#productos" data-category="anillos">Anillos rozantes</a></li>
-              <li><a href="#productos" data-category="portaescobillas">Porta escobillas</a></li>
-              <li><a href="#productos" data-category="especiales">Productos especiales</a></li>
+              <li><a href="#productos" data-view="productos" data-category="escobillas">Escobillas de carbón</a></li>
+              <li><a href="#productos" data-view="productos" data-category="sellos">Sellos y bocinas</a></li>
+              <li><a href="#productos" data-view="productos" data-category="anillos">Anillos rozantes</a></li>
+              <li><a href="#productos" data-view="productos" data-category="portaescobillas">Porta escobillas</a></li>
+              <li><a href="#productos" data-view="productos" data-category="especiales">Productos especiales</a></li>
             </ul>
           </li>
           <li><a href="#aplicaciones" class="nav__link" data-view="inicio">Aplicaciones</a></li>
@@ -85,7 +85,7 @@
           <span class="hero__lead-accent">para un mundo que no se detiene.</span>
         </p>
         <div class="hero__actions">
-          <a href="#productos" class="btn btn--primary" id="btnVerProductos">
+          <a href="#productos" class="btn btn--primary" id="btnVerProductos" data-view="productos">
             Ver productos
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
@@ -254,13 +254,13 @@
     </div>
   </section>
 
-  <section class="products" id="productos">
+  <section class="products" id="linea-productos">
     <div class="section-head">
       <p class="eyebrow">Línea industrial</p>
       <h2>Productos que mantienen<br>la industria en movimiento</h2>
     </div>
     <div class="products__grid">
-      <a class="product-card" href="#productos" data-category="escobillas" id="cardEscobillas">
+      <a class="product-card" href="#productos" data-view="productos" data-category="escobillas" id="cardEscobillas">
         <span class="product-card__num">01</span>
         <img src="assets/product-escobillas.png" alt="Escobillas de carbón">
         <div class="product-card__body">
@@ -268,7 +268,7 @@
           <span>Ver línea</span>
         </div>
       </a>
-      <a class="product-card" href="#productos" data-category="sellos" id="cardSellos">
+      <a class="product-card" href="#productos" data-view="productos" data-category="sellos" id="cardSellos">
         <span class="product-card__num">02</span>
         <img src="assets/product-sellos.png" alt="Sellos y bocinas">
         <div class="product-card__body">
@@ -276,7 +276,7 @@
           <span>Ver línea</span>
         </div>
       </a>
-      <a class="product-card" href="#productos" data-category="anillos" id="cardAnillos">
+      <a class="product-card" href="#productos" data-view="productos" data-category="anillos" id="cardAnillos">
         <span class="product-card__num">03</span>
         <img src="assets/product-anillos.png" alt="Anillos rozantes">
         <div class="product-card__body">
@@ -284,7 +284,7 @@
           <span>Ver línea</span>
         </div>
       </a>
-      <a class="product-card" href="#productos" data-category="portaescobillas" id="cardPortaescobillas">
+      <a class="product-card" href="#productos" data-view="productos" data-category="portaescobillas" id="cardPortaescobillas">
         <span class="product-card__num">04</span>
         <img src="assets/product-porta.png" alt="Porta escobillas">
         <div class="product-card__body">
@@ -292,7 +292,7 @@
           <span>Ver línea</span>
         </div>
       </a>
-      <a class="product-card" href="#productos" data-category="especiales" id="cardEspeciales">
+      <a class="product-card" href="#productos" data-view="productos" data-category="especiales" id="cardEspeciales">
         <span class="product-card__num">05</span>
         <img src="assets/product-especiales.png" alt="Productos especiales">
         <div class="product-card__body">
@@ -334,13 +334,13 @@
           <li><a href="#inicio" class="nav__link" data-view="inicio">Inicio</a></li>
           <li><a href="#nosotros" class="nav__link nav__link--active" data-view="nosotros">Nosotros</a></li>
           <li class="nav__dropdown">
-            <a href="#productos" class="nav__link nav__link--dropdown" data-view="inicio">Productos</a>
+            <a href="#productos" class="nav__link nav__link--dropdown" data-view="productos">Productos</a>
             <ul class="nav__submenu">
-              <li><a href="#productos" data-view="inicio" data-category="escobillas">Escobillas de carbón</a></li>
-              <li><a href="#productos" data-view="inicio" data-category="sellos">Sellos y bocinas</a></li>
-              <li><a href="#productos" data-view="inicio" data-category="anillos">Anillos rozantes</a></li>
-              <li><a href="#productos" data-view="inicio" data-category="portaescobillas">Porta escobillas</a></li>
-              <li><a href="#productos" data-view="inicio" data-category="especiales">Productos especiales</a></li>
+              <li><a href="#productos" data-view="productos" data-category="escobillas">Escobillas de carbón</a></li>
+              <li><a href="#productos" data-view="productos" data-category="sellos">Sellos y bocinas</a></li>
+              <li><a href="#productos" data-view="productos" data-category="anillos">Anillos rozantes</a></li>
+              <li><a href="#productos" data-view="productos" data-category="portaescobillas">Porta escobillas</a></li>
+              <li><a href="#productos" data-view="productos" data-category="especiales">Productos especiales</a></li>
             </ul>
           </li>
           <li><a href="#aplicaciones" class="nav__link" data-view="inicio">Aplicaciones</a></li>
@@ -488,6 +488,115 @@
 
 </div>
 
+<div id="view-productos" class="site-view" hidden>
+
+  <header class="header header--page">
+    <div class="header__inner">
+      <a href="#inicio" class="logo" data-view="inicio">
+        <img src="assets/logo.png" alt="Carbon y Grafito Industrial S.A.C.">
+      </a>
+      <nav class="nav" id="mainNavProductos">
+        <ul class="nav__list">
+          <li><a href="#inicio" class="nav__link" data-view="inicio">Inicio</a></li>
+          <li><a href="#nosotros" class="nav__link" data-view="nosotros">Nosotros</a></li>
+          <li class="nav__dropdown">
+            <a href="#productos" class="nav__link nav__link--dropdown nav__link--active" data-view="productos">Productos</a>
+            <ul class="nav__submenu">
+              <li><a href="#productos" data-view="productos" data-category="escobillas">Escobillas de carbón</a></li>
+              <li><a href="#productos" data-view="productos" data-category="sellos">Sellos y bocinas</a></li>
+              <li><a href="#productos" data-view="productos" data-category="anillos">Anillos rozantes</a></li>
+              <li><a href="#productos" data-view="productos" data-category="portaescobillas">Porta escobillas</a></li>
+              <li><a href="#productos" data-view="productos" data-category="especiales">Productos especiales</a></li>
+            </ul>
+          </li>
+          <li><a href="#aplicaciones" class="nav__link" data-view="inicio">Aplicaciones</a></li>
+          <li><a href="#contacto" class="nav__link" data-view="inicio">Contáctanos</a></li>
+        </ul>
+      </nav>
+      <button class="btn btn--ghost" type="button" data-open-modal="cotizacion">
+        Solicitar cotización
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <button class="header__toggle" aria-label="Abrir menú" type="button" data-nav-toggle>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="catalog" id="catalogMain">
+    <div class="catalog__inner">
+      <header class="catalog__intro">
+        <div>
+          <p class="catalog__kicker">Nuestro catálogo</p>
+          <h1 class="catalog__title">
+            Encuentra el producto<br>
+            <span>que necesitas</span>
+          </h1>
+        </div>
+        <p class="catalog__lead">Contamos con una amplia variedad de productos de carbón y grafito para diferentes aplicaciones industriales.</p>
+      </header>
+
+      <div class="catalog__toolbar">
+        <div class="catalog-chips" id="catalogChips" role="tablist" aria-label="Categorías"></div>
+        <label class="catalog-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input type="search" id="catalogSearch" placeholder="Buscar producto..." autocomplete="off">
+        </label>
+      </div>
+
+      <div class="catalog__layout">
+        <aside class="catalog-filters" aria-label="Filtros del catálogo">
+          <p class="catalog-filters__title">Filtrar por</p>
+
+          <section class="catalog-filters__group">
+            <h2>Categoría</h2>
+            <div id="filterCategory"></div>
+          </section>
+
+          <section class="catalog-filters__group">
+            <h2>Aplicación</h2>
+            <div id="filterApplication"></div>
+          </section>
+
+          <section class="catalog-filters__group">
+            <h2>Material</h2>
+            <div id="filterMaterial"></div>
+          </section>
+
+          <section class="catalog-filters__group">
+            <h2>Disponibilidad</h2>
+            <div id="filterStock"></div>
+          </section>
+
+          <button class="catalog-filters__clear" id="catalogClear" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+            Limpiar filtros
+          </button>
+        </aside>
+
+        <section class="catalog-results" aria-live="polite">
+          <div class="catalog-results__bar">
+            <p id="catalogCount">Mostrando 1-12 de 32 productos</p>
+            <label class="catalog-sort">
+              <span>Ordenar por:</span>
+              <select id="catalogSort">
+                <option value="relevant">Más relevante</option>
+                <option value="name">Nombre A-Z</option>
+                <option value="code">Código</option>
+              </select>
+            </label>
+          </div>
+          <div class="catalog-grid" id="catalogGrid"></div>
+          <nav class="catalog-pages" id="catalogPages" aria-label="Paginación"></nav>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <main class="pdp" id="productPage" hidden></main>
+
+</div>
+
   <footer class="site-footer">
     <div class="site-footer__top">
       <a href="#inicio" class="site-footer__brand">
@@ -495,10 +604,10 @@
       </a>
       <nav class="site-footer__nav" aria-label="Pie de página">
         <a href="#inicio" data-view="inicio">Inicio</a>
-        <a href="#productos" data-view="inicio">Productos</a>
+        <a href="#productos" data-view="productos">Productos</a>
         <a href="#aplicaciones" data-view="inicio">Soluciones</a>
         <a href="#nosotros" data-view="nosotros">Nosotros</a>
-        <a href="#productos" data-view="inicio">Catálogo</a>
+        <a href="#productos" data-view="productos">Catálogo</a>
         <a href="#contacto" data-view="inicio">Contacto</a>
       </nav>
       <div class="site-footer__social">
@@ -530,6 +639,32 @@
     </div>
   </div>
 
+  <div class="modal" id="modalZoom">
+    <div class="modal__overlay" data-close-zoom></div>
+    <div class="pdp-zoom">
+      <button class="modal__close" type="button" data-close-zoom>&times;</button>
+      <img id="pdpZoomImage" alt="">
+    </div>
+  </div>
+
+  <div class="modal" id="modal3d">
+    <div class="modal__overlay" data-close-3d></div>
+    <div class="pdp-3d">
+      <button class="modal__close" type="button" data-close-3d>&times;</button>
+      <p class="pdp-3d__label">Vista 3D</p>
+      <div class="pdp-3d__stage">
+        <img id="pdp3dImage" alt="">
+      </div>
+      <p class="pdp-3d__hint">Gire el modelo con las flechas o arrastre sobre la pieza.</p>
+      <div class="pdp-3d__nav">
+        <button type="button" id="pdp3dPrev" aria-label="Vista anterior">‹</button>
+        <button type="button" id="pdp3dNext" aria-label="Vista siguiente">›</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/product.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

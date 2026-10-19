@@ -3,8 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("formCotizacion");
   const nav = document.getElementById("mainNav");
   const navNosotros = document.getElementById("mainNavNosotros");
+  const navProductos = document.getElementById("mainNavProductos");
   const viewInicio = document.getElementById("view-inicio");
   const viewNosotros = document.getElementById("nosotros");
+  const viewProductos = document.getElementById("view-productos");
   const slides = [...document.querySelectorAll(".home__slide")];
   const currentEl = document.getElementById("slideCurrent");
   const quoteButtons = ["btnCotizacionHeader", "btnCotizacionApps", "btnSolicitarPieza"];
@@ -80,17 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".nav__link").forEach((link) => {
       const linkView = link.dataset.view;
       const href = link.getAttribute("href");
-      if (view === "nosotros") {
-        link.classList.toggle("nav__link--active", linkView === "nosotros" || href === "#nosotros");
-        return;
-      }
-      if (linkView === "nosotros" || href === "#nosotros") {
-        link.classList.remove("nav__link--active");
-        return;
-      }
-      if (href === "#inicio") {
-        link.classList.toggle("nav__link--active", view === "inicio");
-      }
+      const isActive =
+        (view === "nosotros" && (linkView === "nosotros" || href === "#nosotros")) ||
+        (view === "productos" && (linkView === "productos" || href === "#productos" || href?.startsWith("#productos/"))) ||
+        (view === "inicio" && href === "#inicio");
+      link.classList.toggle("nav__link--active", isActive);
     });
   };
 
@@ -173,38 +169,68 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const showView = (view, { scrollTarget = null, replaceHash = true } = {}) => {
+  const showView = (view, { scrollTarget = null, replaceHash = true, category = null, product } = {}) => {
     const isNosotros = view === "nosotros";
+    const isProductos = view === "productos";
 
-    viewInicio.hidden = isNosotros;
+    viewInicio.hidden = isNosotros || isProductos;
     viewNosotros.hidden = !isNosotros;
-    viewInicio.classList.toggle("is-active", !isNosotros);
+    if (viewProductos) viewProductos.hidden = !isProductos;
+    viewInicio.classList.toggle("is-active", !isNosotros && !isProductos);
     viewNosotros.classList.toggle("is-active", isNosotros);
+    viewProductos?.classList.toggle("is-active", isProductos);
     document.body.classList.toggle("is-nosotros", isNosotros);
+    document.body.classList.toggle("is-productos", isProductos);
 
     nav?.classList.remove("is-open");
     navNosotros?.classList.remove("is-open");
+    navProductos?.classList.remove("is-open");
 
     if (isNosotros) {
       stopTimer();
+      window.CatalogApp?.closeProduct?.();
       window.scrollTo(0, 0);
-      if (replaceHash) {
-        history.replaceState(null, "", "#nosotros");
-      }
+      if (replaceHash) history.replaceState(null, "", "#nosotros");
       setActiveNav("nosotros");
       resetImpactCounters();
       setupImpactCounters();
       return;
     }
 
+    if (isProductos) {
+      stopTimer();
+      window.scrollTo(0, 0);
+      setActiveNav("productos");
+      window.CatalogApp?.initCatalog?.();
+      window.CatalogApp?.initProductPage?.();
+
+      const hashProduct = location.hash.startsWith("#productos/")
+        ? decodeURIComponent(location.hash.slice("#productos/".length))
+        : null;
+      const productKey = typeof product === "string" && product
+        ? product
+        : (product === undefined ? hashProduct : null);
+
+      if (productKey) {
+        const opened = window.CatalogApp?.openProductPage?.(decodeURIComponent(productKey), { replaceHash });
+        if (opened) return;
+      }
+
+      window.CatalogApp?.showCatalogPage?.();
+      if (replaceHash) history.replaceState(null, "", "#productos");
+      if (category) window.CatalogApp?.setCatalogCategory?.(category);
+      return;
+    }
+
     startTimer();
+    window.CatalogApp?.closeProduct?.();
     setActiveNav("inicio");
 
     if (replaceHash) {
       history.replaceState(null, "", scrollTarget ? scrollTarget : "#inicio");
     }
 
-    if (scrollTarget && scrollTarget.startsWith("#") && scrollTarget !== "#inicio" && scrollTarget !== "#nosotros") {
+    if (scrollTarget && scrollTarget.startsWith("#") && !["#inicio", "#nosotros", "#productos"].includes(scrollTarget)) {
       requestAnimationFrame(() => {
         document.querySelector(scrollTarget)?.scrollIntoView({ behavior: "smooth", block: "start" });
       });
@@ -226,7 +252,19 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (view === "inicio" || href === "#inicio") {
+    if (href && href.startsWith("#productos/")) {
+      e.preventDefault();
+      showView("productos", { product: decodeURIComponent(href.slice("#productos/".length)) });
+      return;
+    }
+
+    if (view === "productos" || href === "#productos") {
+      e.preventDefault();
+      showView("productos", { category: trigger.dataset.category || null, product: null });
+      return;
+    }
+
+    if (href === "#inicio") {
       e.preventDefault();
       showView("inicio");
       return;
@@ -238,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (!viewInicio.hidden && href && href.startsWith("#") && href !== "#nosotros") {
+    if (!viewInicio.hidden && href && href.startsWith("#") && href !== "#nosotros" && href !== "#productos") {
       const section = document.querySelector(href);
       if (section && viewInicio.contains(section)) {
         e.preventDefault();
@@ -254,6 +292,14 @@ document.addEventListener("DOMContentLoaded", () => {
       showView("nosotros", { replaceHash: false });
       return;
     }
+    if (location.hash.startsWith("#productos/")) {
+      showView("productos", { replaceHash: false, product: decodeURIComponent(location.hash.slice("#productos/".length)) });
+      return;
+    }
+    if (location.hash === "#productos") {
+      showView("productos", { replaceHash: false });
+      return;
+    }
     if (!location.hash || location.hash === "#inicio") {
       showView("inicio", { replaceHash: false });
     }
@@ -261,6 +307,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (location.hash === "#nosotros") {
     showView("nosotros", { replaceHash: false });
+  } else if (location.hash.startsWith("#productos")) {
+    showView("productos", { replaceHash: false });
   } else {
     showView("inicio", { replaceHash: false });
   }
@@ -272,9 +320,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const formatStat = (value) => new Intl.NumberFormat("es-PE").format(value);
 
-  const animateStat = (el, target, delay) =>
+  const STAT_DURATION = 1400;
+
+  const animateStat = (el, target, delay = 0, duration = STAT_DURATION) =>
     new Promise((resolve) => {
-      const duration = 1400;
       const startAt = performance.now() + delay;
 
       const tick = (now) => {
@@ -299,13 +348,13 @@ document.addEventListener("DOMContentLoaded", () => {
       requestAnimationFrame(tick);
     });
 
-  const runStats = async () => {
-    for (let i = 0; i < statValues.length; i += 1) {
-      const el = statValues[i];
+  const runStats = () => {
+    const animations = statValues.map((el) => {
       const target = Number(el.dataset.count);
-      if (!Number.isFinite(target)) continue;
-      await animateStat(el, target, i === 0 ? 0 : 120);
-    }
+      if (!Number.isFinite(target)) return Promise.resolve();
+      return animateStat(el, target, 0, STAT_DURATION);
+    });
+    return Promise.all(animations);
   };
 
   if (statsSection && statValues.length) {
@@ -333,28 +382,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  document.querySelectorAll(".nav__submenu a, .product-card").forEach((el) => {
-    el.addEventListener("click", (e) => {
-      const category = el.dataset.category;
-      if (!category) return;
-
-      e.preventDefault();
-
-      if (viewInicio.hidden) {
-        showView("inicio", { scrollTarget: "#productos", replaceHash: true });
-      }
-
-      requestAnimationFrame(() => {
-        const card = document.querySelector(`.product-card[data-category="${category}"]`);
-        card?.scrollIntoView({ behavior: "smooth", block: "center" });
-        nav?.classList.remove("is-open");
-        navNosotros?.classList.remove("is-open");
-      });
-    });
-  });
-
   const links = document.querySelectorAll("#view-inicio .nav__link:not(.nav__link--dropdown)");
-  const sections = ["inicio", "productos", "aplicaciones", "contacto"];
+  const sections = ["inicio", "linea-productos", "aplicaciones", "contacto"];
 
   sections.forEach((id) => {
     const section = document.getElementById(id);
