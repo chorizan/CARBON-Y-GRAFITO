@@ -15,6 +15,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    const phone = form.dataset.whatsapp || "51914673502";
+    const fd = new FormData(form);
+    const text = [
+      "Hola, solicito una cotización:",
+      "",
+      `Nombre: ${fd.get("nombre")?.toString().trim() || ""}`,
+      `Correo: ${fd.get("email")?.toString().trim() || ""}`,
+      `Teléfono: ${fd.get("telefono")?.toString().trim() || ""}`,
+      "",
+      "Requerimiento:",
+      fd.get("mensaje")?.toString().trim() || "",
+    ].join("\n");
+
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
     form.reset();
     closeModal();
   });
@@ -58,14 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
       requestAnimationFrame(tick);
     });
 
-  const runImpactCounters = async () => {
-    for (let i = 0; i < impactValues.length; i += 1) {
-      const el = impactValues[i];
-      const target = Number(el.dataset.count);
-      if (!Number.isFinite(target)) continue;
-      await animateImpactValue(el, target, i * 100);
-    }
-  };
+  const runImpactCounters = () =>
+    Promise.all(
+      impactValues.map((el) => {
+        const target = Number(el.dataset.count);
+        if (!Number.isFinite(target)) return Promise.resolve();
+        return animateImpactValue(el, target, 0);
+      })
+    );
 
   if (impactSection && impactValues.length) {
     let impactPlayed = false;

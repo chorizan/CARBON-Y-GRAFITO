@@ -181,7 +181,7 @@ const galleryFor = (item) => {
 const relatedFor = (item) => {
   const same = CATALOG_PRODUCTS.filter((product) => product.id !== item.id && product.category === item.category);
   const more = CATALOG_PRODUCTS.filter((product) => product.id !== item.id && product.category !== item.category);
-  return unique([...same, ...more].map((product) => product.id)).slice(0, 4);
+  return unique([...same, ...more].map((product) => product.id)).slice(0, 3);
 };
 
 const getProduct = (key) => {
@@ -310,7 +310,7 @@ const bindQuoteButtons = (root) => {
 const setQuoteMessage = (product) => {
   const message = document.querySelector("#formCotizacion textarea[name='mensaje']");
   if (message) {
-    message.placeholder = `Necesito cotizar ${product.name} (cód. ${product.code}).`;
+    message.value = `Necesito cotizar ${product.name} (cód. ${product.code}).\n\n`;
   }
 };
 

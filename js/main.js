@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const viewProductos = document.getElementById("view-productos");
   const slides = [...document.querySelectorAll(".home__slide")];
   const currentEl = document.getElementById("slideCurrent");
-  const quoteButtons = ["btnCotizacionHeader", "btnCotizacionApps", "btnSolicitarPieza"];
+  const quoteButtons = ["btnCotizacionHeader", "btnSolicitarPieza"];
 
   let index = 0;
   let timer;
@@ -33,8 +33,34 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeModal();
   });
 
+  const buildWhatsAppQuoteUrl = (phone, data) => {
+    const text = [
+      "Hola, solicito una cotización:",
+      "",
+      `Nombre: ${data.nombre}`,
+      `Correo: ${data.email}`,
+      `Teléfono: ${data.telefono}`,
+      "",
+      "Requerimiento:",
+      data.mensaje,
+    ].join("\n");
+    return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  };
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    const phone = form.dataset.whatsapp || "51914673502";
+    const fd = new FormData(form);
+    const url = buildWhatsAppQuoteUrl(phone, {
+      nombre: fd.get("nombre")?.toString().trim() || "",
+      email: fd.get("email")?.toString().trim() || "",
+      telefono: fd.get("telefono")?.toString().trim() || "",
+      mensaje: fd.get("mensaje")?.toString().trim() || "",
+    });
+
+    window.open(url, "_blank", "noopener,noreferrer");
     form.reset();
     closeModal();
   });
@@ -134,14 +160,14 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(tick);
       });
 
-    const runImpactCounters = async () => {
-      for (let i = 0; i < impactValues.length; i += 1) {
-        const el = impactValues[i];
-        const target = Number(el.dataset.count);
-        if (!Number.isFinite(target)) continue;
-        await animateImpactValue(el, target, i * 100);
-      }
-    };
+    const runImpactCounters = () =>
+      Promise.all(
+        impactValues.map((el) => {
+          const target = Number(el.dataset.count);
+          if (!Number.isFinite(target)) return Promise.resolve();
+          return animateImpactValue(el, target, 0);
+        })
+      );
 
     if (!impactSection || !impactValues.length) return;
 
@@ -383,7 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const links = document.querySelectorAll("#view-inicio .nav__link:not(.nav__link--dropdown)");
-  const sections = ["inicio", "linea-productos", "aplicaciones", "contacto"];
+  const sections = ["inicio", "esencia", "contacto"];
 
   sections.forEach((id) => {
     const section = document.getElementById(id);
