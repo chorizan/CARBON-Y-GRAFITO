@@ -38,12 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
       "Hola, solicito una cotización:",
       "",
       `Nombre: ${data.nombre}`,
+      data.empresa ? `Empresa: ${data.empresa}` : null,
       `Correo: ${data.email}`,
       `Teléfono: ${data.telefono}`,
       "",
       "Requerimiento:",
       data.mensaje,
-    ].join("\n");
+    ].filter((line) => line !== null).join("\n");
     return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
   };
 
@@ -55,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fd = new FormData(form);
     const url = buildWhatsAppQuoteUrl(phone, {
       nombre: fd.get("nombre")?.toString().trim() || "",
+      empresa: fd.get("empresa")?.toString().trim() || "",
       email: fd.get("email")?.toString().trim() || "",
       telefono: fd.get("telefono")?.toString().trim() || "",
       mensaje: fd.get("mensaje")?.toString().trim() || "",

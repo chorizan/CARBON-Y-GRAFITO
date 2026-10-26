@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Gemsbuck";
   src: url("../assets/fonts/Gemsbuck-01-Bold.ttf") format("truetype");
-  font-weight: 700;
+  font-weight: 600 800;
   font-style: normal;
   font-display: swap;
 }
@@ -1585,8 +1585,146 @@ h2 {
 .modal__content p { color: var(--blue-muted); margin-bottom: 20px; }
 
 .modal__content--quote {
-  width: min(520px, 92vw);
-  padding: 36px 32px 32px;
+  width: min(1140px, 96vw);
+  padding: 0;
+  overflow: hidden;
+  background: #0d1726;
+}
+
+.quote-layout {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+}
+
+.quote-layout__form {
+  padding: 40px 36px 36px;
+}
+
+.quote-aside {
+  position: relative;
+  padding: 44px 44px 40px;
+  background: linear-gradient(155deg, #0c2a52 0%, #0a1c38 55%, #081425 100%);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.quote-aside::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 100% 0%, rgba(61, 126, 255, 0.22), transparent 60%);
+  pointer-events: none;
+}
+
+.quote-aside__brand {
+  position: relative;
+  margin: 0 0 8px;
+  font-family: var(--display);
+  font-size: clamp(21px, 3vw, 26px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+  color: var(--white);
+}
+
+.quote-aside__tag {
+  position: relative;
+  margin: 0 0 28px;
+  font-family: var(--body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--blue-muted);
+}
+
+.quote-aside__list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.quote-aside__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.quote-aside__item:last-child {
+  border-bottom: none;
+}
+
+.quote-aside__icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--blue-soft);
+}
+
+.quote-aside__icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.quote-aside__text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.quote-aside__text em {
+  font-family: var(--body);
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-muted);
+}
+
+.quote-aside__value {
+  font-family: var(--body);
+  font-size: clamp(16px, 2.2vw, 19px);
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  font-variant-numeric: lining-nums;
+  color: var(--white);
+  word-break: break-word;
+}
+
+a.quote-aside__value {
+  text-decoration: none;
+}
+
+a.quote-aside__value:hover {
+  color: var(--blue-soft);
+}
+
+a.quote-aside__value:focus {
+  outline: none;
+}
+
+a.quote-aside__value:focus-visible {
+  outline: 2px solid var(--blue-soft);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .modal__content--quote .quote-form__kicker {
@@ -1697,6 +1835,25 @@ h2 {
 
 .btn--whatsapp:hover {
   background: #20bd5a;
+}
+
+@media (max-width: 760px) {
+  .quote-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-aside {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .quote-layout__form {
+    padding: 36px 24px 28px;
+  }
+
+  .quote-aside {
+    padding: 32px 24px;
+  }
 }
 
 @media (max-width: 520px) {
