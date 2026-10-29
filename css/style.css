@@ -2028,25 +2028,51 @@ body.is-nosotros {
   grid-template-columns: minmax(0, 1fr) minmax(148px, 200px);
   align-items: start;
   gap: clamp(24px, 4vw, 56px);
-  padding: clamp(64px, 7vh, 88px) clamp(32px, 5vw, 72px) clamp(64px, 7vh, 88px) clamp(40px, 6vw, 88px);
+  padding: clamp(64px, 7vh, 88px) clamp(40px, 6vw, 88px);
 }
 
 .nosotros-hero__main {
+  min-width: 0;
+}
+
+.nosotros-hero__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
   max-width: 560px;
 }
 
+.nosotros-hero__stack > .nosotros-hero__eyebrow,
+.nosotros-hero__stack > .nosotros-hero__title,
+.nosotros-hero__stack > .nosotros-hero__lead {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
+}
+
+.nosotros-hero__stack > .btn--navy {
+  align-self: flex-start;
+}
+
 .nosotros-hero__eyebrow {
-  font-family: var(--body);
+  font-family: var(--display);
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #7a8796;
-  margin-bottom: 22px;
+  margin: 0 0 22px;
 }
 
 .nosotros-hero__title {
-  margin-bottom: 26px;
+  margin: 0 0 26px;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 
 .nosotros-hero__title-line {
@@ -2055,14 +2081,20 @@ body.is-nosotros {
   font-size: clamp(36px, 4.2vw, 52px);
   font-weight: 700;
   line-height: 1.02;
-  letter-spacing: 0.015em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  text-indent: 0;
   color: #0a1018;
+  margin: 0;
+  padding: 0;
+}
+
+.nosotros-hero__title-line + .nosotros-hero__title-line {
+  margin-top: 0.06em;
 }
 
 .nosotros-hero__title-line--accent {
   color: #2e7ec4;
-  margin-top: 2px;
 }
 
 .nosotros-hero__lead {
@@ -2071,8 +2103,9 @@ body.is-nosotros {
   font-weight: 600;
   line-height: 1.72;
   color: #3f4f61;
-  max-width: 500px;
-  margin-bottom: 32px;
+  max-width: none;
+  margin: 0 0 32px;
+  text-wrap: pretty;
 }
 
 .nosotros-hero__aside {
@@ -2332,7 +2365,7 @@ body.is-nosotros {
 
   .nosotros-hero__panel {
     grid-template-columns: 1fr;
-    padding: 40px 32px 36px;
+    padding: 40px clamp(24px, 5vw, 32px) 36px;
   }
 
   .nosotros-hero__aside {
