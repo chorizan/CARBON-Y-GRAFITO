@@ -93,6 +93,28 @@ const PRODUCT_RECORDS = {
     material: "Carbón de grado motor con resorte metálico.",
     modelo3d: true,
   },
+  "bg-01": {
+    slug: "bocina-de-grafito-bg-01",
+    longDesc: "Bocina de grafito autolubricada para alta temperatura, con baja fricción y buena resistencia química en bombas y equipos de proceso.",
+    features: [
+      ["thermal", "Resistencia a alta temperatura"],
+      ["chemical", "Excelente resistencia química"],
+      ["wear", "Autolubricada, baja fricción"],
+      ["custom", "Medidas según equipo"],
+    ],
+    medidas: [{ code: "BG-01", a: 40, b: 25, l: 50 }],
+    especificaciones: {
+      Material: "Grafito de alta densidad",
+      Densidad: "1,7 – 1,9 g/cm³",
+      "Temperatura de trabajo": "Hasta 400 °C",
+      "Diámetro exterior": "40 mm (estándar)",
+      "Diámetro interior": "25 mm (estándar)",
+      Aplicación: "Bombas, equipos de proceso y hornos",
+    },
+    aplicaciones: ["Bombas centrífugas", "Equipos de proceso", "Hornos industriales"],
+    material: "Grafito de alta densidad para sellado y deslizamiento sin lubricación.",
+    modelo3d: true,
+  },
 };
 
 const CATEGORY_DEFAULTS = {
@@ -436,6 +458,8 @@ const openProductPage = (key, { replaceHash = true } = {}) => {
   const page = document.getElementById("productPage");
   if (!product || !page) return false;
 
+  close3d();
+
   PDP.product = product;
   PDP.imageIndex = 0;
   PDP.tab = "especificaciones";
@@ -475,28 +499,57 @@ const openZoom = () => {
   modal.classList.add("is-open");
 };
 
-const brushDimsFromProduct = (product) => {
-  const row = product.medidas?.[0];
-  if (row) return { a: row.a, b: row.b, l: row.l };
-  return { a: 16, b: 32, l: 50 };
+let viewerModule = null;
+
+const loadViewer = () => {
+  viewerModule ||= import("./viewer3d.js");
+  return viewerModule;
 };
 
-const open3d = () => {
+const withViewer = (action) => {
+  viewerModule?.then(({ getViewer }) => {
+    const viewer = getViewer();
+    if (viewer) action(viewer);
+  }).catch(() => {});
+};
+
+const open3d = async () => {
   if (!PDP.product?.modelo3d) return;
   const modal = document.getElementById("modal3d");
   const stage = document.getElementById("pdp3dStage");
-  if (!modal || !stage) return;
+  const image = document.getElementById("pdp3dImage");
+  const loading = document.getElementById("pdp3dLoading");
+  if (!modal || !stage || !image || !loading) return;
+
+  const product = PDP.product;
+  const dims = product.medidas[0];
+  document.getElementById("pdp3dTitle").textContent = `${product.name} ${product.code}`;
+  document.getElementById("pdp3dDims").textContent = dims
+    ? `A ${dims.a} × B ${dims.b} × L ${dims.l} mm · modelo a escala`
+    : "Modelo referencial";
+
+  image.hidden = true;
+  loading.hidden = false;
+  stage.classList.remove("is-fallback");
   modal.classList.add("is-open");
-  requestAnimationFrame(() => {
-    window.Pdp3dViewer?.mountPdp3dViewer(stage, {
-      category: PDP.product.category,
-      dims: brushDimsFromProduct(PDP.product),
-    });
-  });
+
+  try {
+    const { open } = await loadViewer();
+    if (PDP.product !== product) return;
+    open(stage, product);
+  } catch (error) {
+    console.error("No se pudo cargar el visor 3D", error);
+    viewerModule = null;
+    image.src = product.images[0];
+    image.alt = `${product.name} ${product.code}`;
+    image.hidden = false;
+    stage.classList.add("is-fallback");
+  } finally {
+    loading.hidden = true;
+  }
 };
 
 const close3d = () => {
-  window.Pdp3dViewer?.disposePdp3dViewer();
   document.getElementById("modal3d")?.classList.remove("is-open");
 };
 
@@ -547,6 +600,14 @@ const initProductPage = () => {
   });
   document.querySelectorAll("[data-close-3d]").forEach((el) => {
     el.addEventListener("click", close3d);
+  });
+
+  document.getElementById("pdp3dPrev")?.addEventListener("click", () => withViewer((v) => v.turn(-Math.PI / 4)));
+  document.getElementById("pdp3dNext")?.addEventListener("click", () => withViewer((v) => v.turn(Math.PI / 4)));
+  document.getElementById("pdp3dReset")?.addEventListener("click", () => withViewer((v) => v.resetView()));
+  document.getElementById("pdp3dAuto")?.addEventListener("click", () => withViewer((v) => v.toggleAutoRotate()));
+  document.getElementById("pdp3dStage")?.addEventListener("viewer:autorotate", (e) => {
+    document.getElementById("pdp3dAuto")?.setAttribute("aria-pressed", String(e.detail));
   });
 };
 

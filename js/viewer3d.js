@@ -70,7 +70,7 @@ let sharedMaterials = null;
 const materials = () => {
   if (sharedMaterials) return sharedMaterials;
 
-  const carbonMap = canvasTexture(512, (ctx, s) => speckle(ctx, s, "#2c2d30", "#45474c", "#1a1b1d", 9000));
+  const carbonMap = canvasTexture(512, (ctx, s) => speckle(ctx, s, "#363739", "#505257", "#202123", 9000));
   const carbonBump = canvasTexture(512, (ctx, s) => speckle(ctx, s, "#808080", "#b0b0b0", "#3a3a3a", 9000), { color: false });
   const graphiteMap = canvasTexture(512, (ctx, s) => speckle(ctx, s, "#34363a", "#44464b", "#26272a", 5000));
   const braidMap = canvasTexture(256, (ctx, s) => braid(ctx, s, "#7a3d1f", "#c9774a", "#f0b08a"));
@@ -291,7 +291,7 @@ const MODEL_BUILDERS = {
   "eg-14": brushTopLead,
   "eg-25": brushSideTerminal,
   "eg-32": brushSpring,
-  "bg-01": () => bushing({ outer: 15, inner: 10, height: 40 }),
+  "bg-01": ({ a, b, l }) => bushing({ outer: a / 2, inner: b / 2, height: l }),
 };
 
 const CATEGORY_BUILDERS = {
@@ -336,7 +336,7 @@ class ProductViewer {
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.05;
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.domElement.className = "pdp-3d__canvas";
     container.appendChild(this.renderer.domElement);
 
@@ -349,12 +349,13 @@ class ProductViewer {
     this.scene.add(new THREE.HemisphereLight(0xffffff, 0xd9dee5, 0.6));
     this.sun = new THREE.DirectionalLight(0xffffff, 1.6);
     this.sun.castShadow = true;
-    this.sun.shadow.mapSize.set(2048, 2048);
-    this.sun.shadow.radius = 6;
+    this.sun.shadow.mapSize.set(1024, 1024);
+    this.sun.shadow.radius = 10;
+    this.sun.shadow.blurSamples = 16;
     this.sun.shadow.bias = -0.0004;
     this.scene.add(this.sun, this.sun.target);
 
-    this.ground = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.ShadowMaterial({ opacity: 0.16 }));
+    this.ground = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.ShadowMaterial({ opacity: 0.12 }));
     this.ground.rotation.x = -Math.PI / 2;
     this.ground.receiveShadow = true;
     this.scene.add(this.ground);
@@ -398,7 +399,7 @@ class ProductViewer {
     shadow.near = 0.1;
     shadow.far = radius * 10;
     shadow.updateProjectionMatrix();
-    this.sun.position.set(radius * 1.6, radius * 3.2, radius * 2.2);
+    this.sun.position.set(radius * 0.8, radius * 4, radius * 1.2);
 
     this.controls.minDistance = radius * 1.3;
     this.controls.maxDistance = radius * 6;
@@ -410,7 +411,7 @@ class ProductViewer {
   resetView() {
     if (!this.focus) return;
     const distance = this.radius / Math.sin(THREE.MathUtils.degToRad(this.camera.fov / 2)) * 1.08;
-    const azimuth = THREE.MathUtils.degToRad(-28);
+    const azimuth = THREE.MathUtils.degToRad(32);
     const elevation = THREE.MathUtils.degToRad(18);
     this.camera.position.set(
       Math.sin(azimuth) * Math.cos(elevation) * distance,

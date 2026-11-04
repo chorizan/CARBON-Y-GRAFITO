@@ -733,13 +733,38 @@
     <div class="modal__overlay" data-close-3d></div>
     <div class="pdp-3d">
       <button class="modal__close" type="button" data-close-3d>&times;</button>
-      <p class="pdp-3d__label">Vista 3D</p>
-      <div class="pdp-3d__stage" id="pdp3dStage" aria-label="Modelo 3D del producto"></div>
-      <p class="pdp-3d__hint">Arrastre para girar · rueda para acercar · doble clic para reiniciar</p>
+      <div class="pdp-3d__head">
+        <p class="pdp-3d__label">Vista 3D</p>
+        <p class="pdp-3d__title" id="pdp3dTitle"></p>
+      </div>
+      <div class="pdp-3d__stage" id="pdp3dStage" aria-label="Modelo 3D del producto">
+        <p class="pdp-3d__status" id="pdp3dLoading">Cargando modelo 3D…</p>
+        <img id="pdp3dImage" alt="" hidden>
+        <span class="pdp-3d__dims" id="pdp3dDims"></span>
+      </div>
+      <p class="pdp-3d__hint">Arrastre para girar · rueda o pellizco para acercar · clic derecho para desplazar</p>
+      <div class="pdp-3d__nav">
+        <button type="button" id="pdp3dPrev" aria-label="Girar a la izquierda">‹</button>
+        <button type="button" id="pdp3dAuto" aria-label="Rotación automática" aria-pressed="true">
+          <svg class="is-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="3.2" height="12" rx="1"/><rect x="13.8" y="6" width="3.2" height="12" rx="1"/></svg>
+          <svg class="is-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+        </button>
+        <button type="button" id="pdp3dReset" aria-label="Restablecer vista">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 108-8 8.5 8.5 0 00-6 2.5L4 8.5"/><path d="M4 4v4.5h4.5"/></svg>
+        </button>
+        <button type="button" id="pdp3dNext" aria-label="Girar a la derecha">›</button>
+      </div>
     </div>
   </div>
 
-  <script src="js/pdp-3d-viewer.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
   <script src="js/catalog.js"></script>
   <script src="js/product.js"></script>
   <script src="js/main.js"></script>
