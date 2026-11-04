@@ -186,6 +186,7 @@ const initCatalog = () => {
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     document.getElementById("modalZoom")?.classList.remove("is-open");
+    window.Pdp3dViewer?.disposePdp3dViewer();
     document.getElementById("modal3d")?.classList.remove("is-open");
   });
 };

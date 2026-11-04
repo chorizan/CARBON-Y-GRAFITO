@@ -1,13 +1,91 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-PE">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CARBON Y GRAFITO INDUSTRIAL S.A.C.</title>
+  <title>Carbón y grafito industrial en Perú | Carbon y Grafito Industrial S.A.C.</title>
+  <meta name="description" content="Distribución de carbón, grafito, escobillas, sellos, bocinas y anillos rozantes en Lima, Perú. Fabricación según plano o muestra y asesoría técnica. Carbon y Grafito Industrial S.A.C.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="Carbon y Grafito Industrial S.A.C.">
+  <meta name="theme-color" content="#0d1726">
+  <link rel="canonical" href="https://carbonygrafitoind.com/">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:site_name" content="Carbon y Grafito Industrial S.A.C.">
+  <meta property="og:title" content="Carbón y grafito industrial en Perú">
+  <meta property="og:description" content="Escobillas de carbón, sellos, bocinas, anillos rozantes y piezas de grafito. Atención en Lima y cobertura nacional.">
+  <meta property="og:url" content="https://carbonygrafitoind.com/">
+  <meta property="og:image" content="https://carbonygrafitoind.com/assets/hero-graphite.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Carbón y grafito industrial en Perú">
+  <meta name="twitter:description" content="Escobillas de carbón, sellos, bocinas y anillos rozantes. Asesoría técnica en Lima, Perú.">
+  <meta name="twitter:image" content="https://carbonygrafitoind.com/assets/hero-graphite.png">
+  <script type="application/ld+json" id="seo-jsonld">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Carbon y Grafito Industrial S.A.C.",
+    "url": "https://carbonygrafitoind.com/",
+    "image": "https://carbonygrafitoind.com/assets/logo.png",
+    "description": "Distribución de carbono, grafito y soluciones industriales: escobillas, sellos, bocinas, anillos rozantes y piezas especiales, con fabricación según plano o muestra.",
+    "telephone": ["+51914673502", "+5113310971"],
+    "email": "ventas@carbonygrafitoind.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lima",
+      "addressCountry": "PE"
+    },
+    "areaServed": "PE",
+    "openingHours": "Mo-Sa 08:00-18:00",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Catálogo de carbón y grafito",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Escobilla de carbón EG-14", "description": "Para motores eléctricos y generadores.", "image": "https://carbonygrafitoind.com/assets/catalog-escobilla-carbon.jpg" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Escobilla industrial EG-25", "description": "Alta resistencia al desgaste.", "image": "https://carbonygrafitoind.com/assets/catalog-escobilla-industrial.jpg" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Escobilla con resorte EG-32", "description": "Para aplicaciones de alta rotación.", "image": "https://carbonygrafitoind.com/assets/catalog-escobilla-resorte.jpg" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Bocina de grafito BG-01", "description": "Para alta temperatura y corrientes exigentes.", "image": "https://carbonygrafitoind.com/assets/catalog-bocina-grafito.jpg" } }
+      ]
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,400;1,500&family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=nav-mobile4">
+  <script>
+    (function () {
+      if (location.protocol !== "http:" && location.protocol !== "https:") return;
+      var site = location.origin + location.pathname.replace(/index\.html$/, "");
+      if (!site.endsWith("/")) site += "/";
+      var canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) canonical.href = site;
+      var set = function (selector, attr, value) {
+        var node = document.querySelector(selector);
+        if (node) node.setAttribute(attr, value);
+      };
+      set('meta[property="og:url"]', "content", site);
+      set('meta[property="og:image"]', "content", site + "assets/hero-graphite.png");
+      set('meta[name="twitter:image"]', "content", site + "assets/hero-graphite.png");
+      var ld = document.getElementById("seo-jsonld");
+      if (!ld) return;
+      try {
+        var data = JSON.parse(ld.textContent);
+        var rewrite = function (value) {
+          return typeof value === "string" ? value.replace("https://carbonygrafitoind.com/", site) : value;
+        };
+        data.url = site;
+        data.image = rewrite(data.image);
+        var offers = data.hasOfferCatalog && data.hasOfferCatalog.itemListElement;
+        if (offers) offers.forEach(function (offer) {
+          if (offer.itemOffered) offer.itemOffered.image = rewrite(offer.itemOffered.image);
+        });
+        ld.textContent = JSON.stringify(data);
+      } catch (error) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -22,10 +100,10 @@
         <img src="assets/hero-graphite.png" alt="Bloques, anillos y granulado de grafito industrial">
       </article>
       <article class="home__slide">
-        <img src="assets/hero-brushes.png" alt="Escobillas de carbón y anillos rozantes">
+        <img src="assets/hero-brushes.png" alt="Escobillas de carbón y anillos rozantes" loading="lazy" decoding="async">
       </article>
       <article class="home__slide">
-        <img src="assets/hero-seals.png" alt="Sellos y piezas especiales de grafito">
+        <img src="assets/hero-seals.png" alt="Sellos y piezas especiales de grafito" loading="lazy" decoding="async">
       </article>
     </div>
     <p class="home__note home__note--top">GRAFITO<br>CARBONO<br>SOLUCIONES<br>RESULTADOS</p>
@@ -189,7 +267,7 @@
           </span>
           <div>
             <strong>Asesoría especializada</strong>
-            <span>Acompañamiento técnico para cada necesidad.</span>
+            <span>Asesoría técnica para cada necesidad.</span>
           </div>
         </li>
       </ul>
@@ -292,38 +370,33 @@
   <main class="nosotros-main">
     <section class="nosotros-hero">
       <div class="nosotros-hero__panel">
-        <div class="nosotros-hero__main">
-          <div class="nosotros-hero__stack">
-            <p class="nosotros-hero__eyebrow">Quiénes somos</p>
-            <h1 class="nosotros-hero__title">
-              <span class="nosotros-hero__title-line">Más que materiales,</span>
-              <span class="nosotros-hero__title-line nosotros-hero__title-line--accent">soluciones reales</span>
-            </h1>
-            <p class="nosotros-hero__lead">
-              En Carbon y Grafito somos una empresa especializada en la distribución de carbono,
-              grafito y materiales industriales, comprometida con ofrecer soluciones confiables,
-              eficientes y de alta calidad para diversos sectores productivos.
-            </p>
-            <a href="#historia" class="btn btn--navy">Conoce nuestra historia
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
+        <p class="nosotros-hero__eyebrow">Quiénes somos</p>
+        <h1 class="nosotros-hero__title">
+          <span class="nosotros-hero__title-line">Más que</span>
+          <span class="nosotros-hero__title-line">materiales,</span>
+          <span class="nosotros-hero__title-line nosotros-hero__title-line--accent">soluciones</span>
+          <span class="nosotros-hero__title-line nosotros-hero__title-line--accent">reales</span>
+        </h1>
+        <div class="nosotros-hero__pillar-wrap" aria-label="Valores de marca">
+          <span class="nosotros-hero__vline" aria-hidden="true"></span>
+          <p class="nosotros-hero__pillars">
+            <span>Industria</span>
+            <span>Experiencia</span>
+            <span>Confianza</span>
+          </p>
         </div>
-        <aside class="nosotros-hero__aside" aria-label="Valores de marca">
-          <div class="nosotros-hero__pillar-wrap">
-            <span class="nosotros-hero__vline" aria-hidden="true"></span>
-            <p class="nosotros-hero__pillars">
-              <span>Industria</span>
-              <span>Experiencia</span>
-              <span>Confianza</span>
-            </p>
-          </div>
-          <span class="nosotros-hero__hline" aria-hidden="true"></span>
-          <div class="nosotros-hero__mark">
-            <strong>C&amp;G</strong>
-            <span>Materiales que<br>impulsan el<br>progreso</span>
-          </div>
-        </aside>
+        <p class="nosotros-hero__lead">
+          En Carbon y Grafito somos una empresa especializada en la distribución de carbono,
+          grafito y materiales industriales, comprometida con ofrecer soluciones confiables,
+          eficientes y de alta calidad para diversos sectores productivos.
+        </p>
+        <div class="nosotros-hero__mark">
+          <strong>C&amp;G</strong>
+          <span>Materiales que impulsan el progreso</span>
+        </div>
+        <a href="#historia" class="btn btn--navy nosotros-hero__cta">Conoce nuestra historia
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
       <div class="nosotros-hero__visual">
         <img src="assets/hero-graphite.png" alt="Componentes de carbono y grafito industrial">
@@ -403,7 +476,7 @@
           <div class="nosotros-impact__metrics">
             <p class="nosotros-impact__kicker">Nuestro impacto</p>
             <div class="nosotros-impact__stats">
-              <article class="nosotros-impact__stat"><strong class="nosotros-impact__value" data-count="10">+0</strong><span>Años de<br>experiencia</span></article>
+              <article class="nosotros-impact__stat"><strong class="nosotros-impact__value" data-count="15">+0</strong><span>Años de<br>experiencia</span></article>
               <article class="nosotros-impact__stat"><strong class="nosotros-impact__value" data-count="500">+0</strong><span>Clientes<br>satisfechos</span></article>
               <article class="nosotros-impact__stat"><strong class="nosotros-impact__value" data-count="1200">+0</strong><span>Productos<br>distribuidos</span></article>
               <article class="nosotros-impact__stat"><strong class="nosotros-impact__value" data-count="15">+0</strong><span>Sectores<br>industriales</span></article>
@@ -490,7 +563,52 @@
               </select>
             </label>
           </div>
-          <div class="catalog-grid" id="catalogGrid"></div>
+          <div class="catalog-grid" id="catalogGrid">
+            <article class="catalog-card">
+              <a class="catalog-card__media" href="#productos/escobilla-de-carbon-eg-14" data-open-product="eg-14" aria-label="Ver Escobilla de carbón">
+                <img src="assets/catalog-escobilla-carbon.jpg" alt="Escobilla de carbón EG-14 para motores eléctricos y generadores">
+              </a>
+              <div class="catalog-card__body">
+                <p class="catalog-card__cat">Escobillas</p>
+                <h3>Escobilla de carbón</h3>
+                <p class="catalog-card__desc">Para motores eléctricos y generadores.</p>
+                <div class="catalog-card__foot"><span>Cód. EG-14</span></div>
+              </div>
+            </article>
+            <article class="catalog-card">
+              <a class="catalog-card__media" href="#productos/escobilla-industrial-eg-25" data-open-product="eg-25" aria-label="Ver Escobilla industrial">
+                <img src="assets/catalog-escobilla-industrial.jpg" alt="Escobilla industrial de carbón EG-25">
+              </a>
+              <div class="catalog-card__body">
+                <p class="catalog-card__cat">Escobillas</p>
+                <h3>Escobilla industrial</h3>
+                <p class="catalog-card__desc">Alta resistencia al desgaste.</p>
+                <div class="catalog-card__foot"><span>Cód. EG-25</span></div>
+              </div>
+            </article>
+            <article class="catalog-card">
+              <a class="catalog-card__media" href="#productos/escobilla-con-resorte-eg-32" data-open-product="eg-32" aria-label="Ver Escobilla con resorte">
+                <img src="assets/catalog-escobilla-resorte.jpg" alt="Escobilla de carbón con resorte EG-32">
+              </a>
+              <div class="catalog-card__body">
+                <p class="catalog-card__cat">Escobillas</p>
+                <h3>Escobilla con resorte</h3>
+                <p class="catalog-card__desc">Para aplicaciones de alta rotación.</p>
+                <div class="catalog-card__foot"><span>Cód. EG-32</span></div>
+              </div>
+            </article>
+            <article class="catalog-card">
+              <a class="catalog-card__media" href="#productos/bocina-de-grafito-bg-01" data-open-product="bg-01" aria-label="Ver Bocina de grafito">
+                <img src="assets/catalog-bocina-grafito.jpg" alt="Bocina de grafito BG-01 para alta temperatura">
+              </a>
+              <div class="catalog-card__body">
+                <p class="catalog-card__cat">Sellos y bocinas</p>
+                <h3>Bocina de grafito</h3>
+                <p class="catalog-card__desc">Para alta temperatura y corrientes exigentes.</p>
+                <div class="catalog-card__foot"><span>Cód. BG-01</span></div>
+              </div>
+            </article>
+          </div>
           <nav class="catalog-pages" id="catalogPages" aria-label="Paginación"></nav>
         </section>
       </div>
@@ -616,17 +734,12 @@
     <div class="pdp-3d">
       <button class="modal__close" type="button" data-close-3d>&times;</button>
       <p class="pdp-3d__label">Vista 3D</p>
-      <div class="pdp-3d__stage">
-        <img id="pdp3dImage" alt="">
-      </div>
-      <p class="pdp-3d__hint">Gire el modelo con las flechas o arrastre sobre la pieza.</p>
-      <div class="pdp-3d__nav">
-        <button type="button" id="pdp3dPrev" aria-label="Vista anterior">‹</button>
-        <button type="button" id="pdp3dNext" aria-label="Vista siguiente">›</button>
-      </div>
+      <div class="pdp-3d__stage" id="pdp3dStage" aria-label="Modelo 3D del producto"></div>
+      <p class="pdp-3d__hint">Arrastre para girar · rueda para acercar · doble clic para reiniciar</p>
     </div>
   </div>
 
+  <script src="js/pdp-3d-viewer.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/product.js"></script>
   <script src="js/main.js"></script>

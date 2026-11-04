@@ -1,9 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("modalCotizacion");
   const form = document.getElementById("formCotizacion");
-  const nav = document.getElementById("mainNav");
-  const navNosotros = document.getElementById("mainNavNosotros");
-  const navProductos = document.getElementById("mainNavProductos");
+  const syncMenu = (navEl, open) => {
+    if (!navEl) return;
+    const header = navEl.closest(".header");
+    const toggle = header?.querySelector(".header__toggle");
+    navEl.classList.toggle("is-open", open);
+    header?.classList.toggle("is-menu-open", open);
+    toggle?.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle?.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    document.body.classList.toggle("is-nav-open", Boolean(document.querySelector(".nav.is-open")));
+  };
+
+  const closeMenus = () => {
+    document.querySelectorAll(".nav.is-open").forEach((navEl) => syncMenu(navEl, false));
+  };
   const viewInicio = document.getElementById("view-inicio");
   const viewNosotros = document.getElementById("nosotros");
   const viewProductos = document.getElementById("view-productos");
@@ -16,7 +27,58 @@ document.addEventListener("DOMContentLoaded", () => {
   let impactPlayed = false;
   let impactObserver;
 
-  const openModal = () => modal.classList.add("is-open");
+  const animateCountUp = (el, target, { duration = 1400, delay = 0, format }) =>
+    new Promise((resolve) => {
+      if (!Number.isFinite(target)) {
+        resolve();
+        return;
+      }
+      const startAt = performance.now() + delay;
+      const tick = (now) => {
+        if (now < startAt) {
+          requestAnimationFrame(tick);
+          return;
+        }
+        const progress = Math.min((now - startAt) / duration, 1);
+        const eased = 1 - (1 - progress) ** 3;
+        el.textContent = format(Math.round(target * eased));
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+          return;
+        }
+        el.textContent = format(target);
+        resolve();
+      };
+      requestAnimationFrame(tick);
+    });
+
+  const bindRevealOnScroll = (section, callback, { threshold = 0.35, prefetchRatio = 0.92 } = {}) => {
+    let done = false;
+    const run = () => {
+      if (done) return;
+      done = true;
+      callback();
+    };
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        run();
+        obs.disconnect();
+      },
+      { threshold }
+    );
+    observer.observe(section);
+    if (section.getBoundingClientRect().top < window.innerHeight * prefetchRatio) {
+      run();
+      observer.disconnect();
+    }
+    return observer;
+  };
+
+  const openModal = () => {
+    closeMenus();
+    modal.classList.add("is-open");
+  };
   const closeModal = () => modal.classList.remove("is-open");
 
   quoteButtons.forEach((id) => {
@@ -30,7 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("modalClose").addEventListener("click", closeModal);
   modal.querySelector(".modal__overlay").addEventListener("click", closeModal);
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
+    if (e.key !== "Escape") return;
+    if (document.querySelector(".nav.is-open")) {
+      closeMenus();
+      return;
+    }
+    closeModal();
   });
 
   const buildWhatsAppQuoteUrl = (phone, data) => {
@@ -67,15 +134,20 @@ document.addEventListener("DOMContentLoaded", () => {
     closeModal();
   });
 
-  document.querySelectorAll("[data-nav-toggle]").forEach((toggle) => {
+  document.querySelectorAll(".header__toggle").forEach((toggle) => {
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-haspopup", "true");
     toggle.addEventListener("click", () => {
       const headerNav = toggle.closest(".header")?.querySelector(".nav");
-      headerNav?.classList.toggle("is-open");
+      if (!headerNav) return;
+      const willOpen = !headerNav.classList.contains("is-open");
+      closeMenus();
+      if (willOpen) syncMenu(headerNav, true);
     });
   });
 
-  document.getElementById("menuToggle")?.addEventListener("click", () => {
-    nav.classList.toggle("is-open");
+  window.matchMedia("(max-width: 800px)").addEventListener("change", (event) => {
+    if (!event.matches) closeMenus();
   });
 
   const showSlide = (next) => {
@@ -132,69 +204,23 @@ document.addEventListener("DOMContentLoaded", () => {
       ? [...impactSection.querySelectorAll(".nosotros-impact__value[data-count]")]
       : [];
 
+    if (!impactSection || !impactValues.length) return;
+
     const formatImpact = (value) =>
       `+${new Intl.NumberFormat("es-PE").format(value)}`;
 
-    const animateImpactValue = (el, target, delay) =>
-      new Promise((resolve) => {
-        const duration = 1600;
-        const startAt = performance.now() + delay;
-
-        const tick = (now) => {
-          if (now < startAt) {
-            requestAnimationFrame(tick);
-            return;
-          }
-
-          const progress = Math.min((now - startAt) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = formatImpact(Math.round(target * eased));
-
-          if (progress < 1) {
-            requestAnimationFrame(tick);
-            return;
-          }
-
-          el.textContent = formatImpact(target);
-          resolve();
-        };
-
-        requestAnimationFrame(tick);
-      });
-
-    const runImpactCounters = () =>
-      Promise.all(
-        impactValues.map((el) => {
-          const target = Number(el.dataset.count);
-          if (!Number.isFinite(target)) return Promise.resolve();
-          return animateImpactValue(el, target, 0);
-        })
-      );
-
-    if (!impactSection || !impactValues.length) return;
-
-    const playImpact = () => {
+    impactObserver = bindRevealOnScroll(impactSection, () => {
       if (impactPlayed) return;
       impactPlayed = true;
-      runImpactCounters();
-    };
-
-    impactObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          playImpact();
-          observer.disconnect();
-        });
-      },
-      { threshold: 0.35 }
-    );
-
-    impactObserver.observe(impactSection);
-    if (impactSection.getBoundingClientRect().top < window.innerHeight * 0.92) {
-      playImpact();
-      impactObserver.disconnect();
-    }
+      Promise.all(
+        impactValues.map((el) =>
+          animateCountUp(el, Number(el.dataset.count), {
+            duration: 1600,
+            format: formatImpact,
+          })
+        )
+      );
+    });
   };
 
   const showView = (view, { scrollTarget = null, replaceHash = true, category = null, product } = {}) => {
@@ -210,9 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("is-nosotros", isNosotros);
     document.body.classList.toggle("is-productos", isProductos);
 
-    nav?.classList.remove("is-open");
-    navNosotros?.classList.remove("is-open");
-    navProductos?.classList.remove("is-open");
+    closeMenus();
 
     if (isNosotros) {
       stopTimer();
@@ -309,8 +333,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (section && viewInicio.contains(section)) {
         e.preventDefault();
         section.scrollIntoView({ behavior: "smooth", block: "start" });
-        nav?.classList.remove("is-open");
-        navNosotros?.classList.remove("is-open");
+        closeMenus();
       }
     }
   });
@@ -346,68 +369,19 @@ document.addEventListener("DOMContentLoaded", () => {
     ? [...statsSection.querySelectorAll(".home-stats__value")]
     : [];
 
-  const formatStat = (value) => new Intl.NumberFormat("es-PE").format(value);
-
-  const STAT_DURATION = 1400;
-
-  const animateStat = (el, target, delay = 0, duration = STAT_DURATION) =>
-    new Promise((resolve) => {
-      const startAt = performance.now() + delay;
-
-      const tick = (now) => {
-        if (now < startAt) {
-          requestAnimationFrame(tick);
-          return;
-        }
-
-        const progress = Math.min((now - startAt) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = formatStat(Math.round(target * eased));
-
-        if (progress < 1) {
-          requestAnimationFrame(tick);
-          return;
-        }
-
-        el.textContent = formatStat(target);
-        resolve();
-      };
-
-      requestAnimationFrame(tick);
-    });
-
-  const runStats = () => {
-    const animations = statValues.map((el) => {
-      const target = Number(el.dataset.count);
-      if (!Number.isFinite(target)) return Promise.resolve();
-      return animateStat(el, target, 0, STAT_DURATION);
-    });
-    return Promise.all(animations);
-  };
-
   if (statsSection && statValues.length) {
-    let statsPlayed = false;
-    const playStats = () => {
-      if (statsPlayed) return;
-      statsPlayed = true;
-      runStats();
-    };
-
-    const statsObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          playStats();
-          observer.disconnect();
-        });
+    const formatStat = (value) => new Intl.NumberFormat("es-PE").format(value);
+    bindRevealOnScroll(
+      statsSection,
+      () => {
+        Promise.all(
+          statValues.map((el) =>
+            animateCountUp(el, Number(el.dataset.count), { format: formatStat })
+          )
+        );
       },
-      { threshold: 0.35 }
+      { prefetchRatio: 0.9 }
     );
-    statsObserver.observe(statsSection);
-    if (statsSection.getBoundingClientRect().top < window.innerHeight * 0.9) {
-      playStats();
-      statsObserver.disconnect();
-    }
   }
 
   const links = document.querySelectorAll("#view-inicio .nav__link:not(.nav__link--dropdown)");

@@ -122,6 +122,7 @@ const CATEGORY_DEFAULTS = {
       "Temperatura de trabajo": "Hasta 400 °C",
     },
     material: "Grafito de alta densidad para sellado y deslizamiento.",
+    modelo3d: true,
   },
   anillos: {
     features: [
@@ -474,14 +475,29 @@ const openZoom = () => {
   modal.classList.add("is-open");
 };
 
+const brushDimsFromProduct = (product) => {
+  const row = product.medidas?.[0];
+  if (row) return { a: row.a, b: row.b, l: row.l };
+  return { a: 16, b: 32, l: 50 };
+};
+
 const open3d = () => {
   if (!PDP.product?.modelo3d) return;
   const modal = document.getElementById("modal3d");
-  const image = document.getElementById("pdp3dImage");
-  if (!modal || !image) return;
-  image.src = PDP.product.images[PDP.imageIndex];
-  image.alt = `${PDP.product.name} vista 3D`;
+  const stage = document.getElementById("pdp3dStage");
+  if (!modal || !stage) return;
   modal.classList.add("is-open");
+  requestAnimationFrame(() => {
+    window.Pdp3dViewer?.mountPdp3dViewer(stage, {
+      category: PDP.product.category,
+      dims: brushDimsFromProduct(PDP.product),
+    });
+  });
+};
+
+const close3d = () => {
+  window.Pdp3dViewer?.disposePdp3dViewer();
+  document.getElementById("modal3d")?.classList.remove("is-open");
 };
 
 const initProductPage = () => {
@@ -530,18 +546,7 @@ const initProductPage = () => {
     el.addEventListener("click", () => document.getElementById("modalZoom")?.classList.remove("is-open"));
   });
   document.querySelectorAll("[data-close-3d]").forEach((el) => {
-    el.addEventListener("click", () => document.getElementById("modal3d")?.classList.remove("is-open"));
-  });
-
-  document.getElementById("pdp3dPrev")?.addEventListener("click", () => {
-    stepGallery(-1);
-    const image = document.getElementById("pdp3dImage");
-    if (image && PDP.product) image.src = PDP.product.images[PDP.imageIndex];
-  });
-  document.getElementById("pdp3dNext")?.addEventListener("click", () => {
-    stepGallery(1);
-    const image = document.getElementById("pdp3dImage");
-    if (image && PDP.product) image.src = PDP.product.images[PDP.imageIndex];
+    el.addEventListener("click", close3d);
   });
 };
 
